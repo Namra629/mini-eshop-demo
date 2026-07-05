@@ -10,7 +10,9 @@ NGINX is used in this project as a **Static Web Server + Reverse Proxy**.
 /etc/nginx
 
 /etc/nginx/nginx.conf  -> main config
+
 /etc/nginx/sites-available/default  -> avb site configs
+
 /etc/nginx/sites-enabled/ -> active sites (symlinks)
 
 ---
