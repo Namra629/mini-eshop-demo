@@ -28,6 +28,6 @@ public class OrdersController : ControllerBase
 
 public class OrderRequest
 {
-    public int ProductId { get; set; }
+    public Guid ProductId { get; set; }
     public int Quantity { get; set; }
 }

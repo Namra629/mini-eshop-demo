@@ -169,7 +169,7 @@ When the application starts:
 6. Middleware Configuration
 7. API Starts Listening
 
-Backend can be accessed from the browser at http://<VM-IP>/api/products
+Backend can be accessed from the browser at http://VM-IP/api/products
 
 ---
 
