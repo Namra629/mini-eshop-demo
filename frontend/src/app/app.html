@@ -1,0 +1,31 @@
+<div class="page">
+
+  <header class="header">
+    <h1>🛒 Mini eShop</h1>
+    <p>DevOps Microservice Demo</p>
+
+    <button class="btn" (click)="loadProducts()">
+      Load Products
+    </button>
+  </header>
+
+  <div class="grid">
+
+    <div class="card" *ngFor="let p of products">
+      <div class="badge">Available</div>
+
+      <h2>{{ p.name }}</h2>
+
+      <div class="price">
+        ${{ p.price }}
+      </div>
+
+      <button class="btn" (click)="buyProduct(p)">
+        Buy Now
+      </button>
+
+    </div>
+
+  </div>
+
+</div>

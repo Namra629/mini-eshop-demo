@@ -1,0 +1,22 @@
+# Angular
+node_modules/
+dist/
+
+# .NET
+bin/
+obj/
+
+# VS Code
+.vscode/
+
+# Logs
+*.log
+
+# OS
+.DS_Store
+
+# Docker
+docker-data/
+
+# Secrets
+.env
