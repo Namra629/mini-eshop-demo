@@ -250,7 +250,7 @@ sudo systemctl start postgresql
 ## Start Redis
 
 ```bash
-redis-server
+sudo systemctl start redis
 ```
 
 ## Run Backend
@@ -277,6 +277,8 @@ ng build --configuration production
 
 ```bash
 sudo cp -r dist/frontend/browser/* /var/www/html/
+sudo chmod -R 755 /var/www/html
+sudo chown -R www-data:www-data /var/www/html
 sudo systemctl restart nginx
 ```
 
