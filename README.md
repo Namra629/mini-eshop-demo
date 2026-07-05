@@ -14,6 +14,12 @@ A full-stack e-commerce demo application demonstrating modern web application ar
 | Web Server | NGINX |
 | Hosting | Linux VM |
 
+where ORM (Object Relational Mapper)  maps C# objects to relational database tables and lets ASP.NET Core interact with PostgreSQL without writing raw SQL queries.
+
+
+
+
+
 ![Architecture Diagram](./assets/architecture.png)
 
 ---
