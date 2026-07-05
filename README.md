@@ -14,7 +14,7 @@ A full-stack e-commerce demo application demonstrating modern web application ar
 | Web Server | NGINX |
 | Hosting | Linux VM |
 
-![Architecture Diagram](./assets/'mini-eshop architecture.png')
+![Architecture Diagram](./assets/architecture.png)
 
 ---
 
