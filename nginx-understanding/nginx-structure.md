@@ -21,18 +21,6 @@ Files:
 
 ## Request Flow
 
-Browser
-  ↓
-NGINX (/var/www/html)
-  ↓
-Static Angular Files
+Browser -> NGINX (/var/www/html) -> Static Angular Files
 
-OR
-
-Browser
-  ↓
-NGINX (/api/*)
-  ↓
-ASP.NET Core Backend
-  ↓
-PostgreSQL (via EF Core ORM)
+Browser → NGINX (/api/*) → ASP.NET Core API  → PostgreSQL (via EF Core ORM)
