@@ -6,7 +6,7 @@ A full-stack e-commerce demo application demonstrating modern web application ar
 
 | Layer | Technology |
 |---------|------------|
-| Frontend | Angular (Standalone Components) |
+| Frontend | Angular (Standalone Components i.e Modern Angular -> no Ngmodules) |
 | Backend | ASP.NET Core Web API (.NET 8) |
 | Database | PostgreSQL |
 | ORM | Entity Framework Core |
