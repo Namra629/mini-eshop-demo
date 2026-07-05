@@ -21,8 +21,15 @@ export class AppComponent {
   }
 
   buyProduct(product: any) {
-    this.api.buyProduct(product).subscribe(() => {
+  this.api.buyProduct(product).subscribe({
+    next: (res) => {
+      console.log('Order success:', res);
       alert(`Order placed for ${product.name}`);
-    });
-  }
+    },
+    error: (err) => {
+      console.error('Order failed:', err);
+      alert('Order failed!');
+    }
+  });
+}
 }

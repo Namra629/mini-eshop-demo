@@ -6,15 +6,18 @@ import { HttpClient } from '@angular/common/http';
 })
 export class ApiService {
 
-  private baseUrl = 'http://20.106.184.241:5000';
+  private baseUrl = '/api';
 
   constructor(private http: HttpClient) {}
 
   getProducts() {
-    return this.http.get(`${this.baseUrl}/api/products`);
+    return this.http.get(`${this.baseUrl}/products`);
   }
 
   buyProduct(product: any) {
-    return this.http.post(`${this.baseUrl}/api/orders`, product);
+    return this.http.post(`${this.baseUrl}/orders`, {
+      productId: product.id,
+      quantity: 1
+    });
   }
 }

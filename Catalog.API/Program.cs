@@ -1,15 +1,36 @@
+using Catalog.API.Data;
+using Catalog.API.Models;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 //
 // ==========================
 // SERVICES
 // ==========================
+
+// Controllers (important for MVC controllers)
+builder.Services.AddControllers();
+
 // Swagger
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 //
-// CORS (IMPORTANT for Angular)
+// PostgreSQL
+//
+builder.Services.AddDbContext<CatalogDbContext>(options =>
+    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"))
+);
+
+//  REDIS 
+//
+builder.Services.AddStackExchangeRedisCache(options =>
+{
+    options.Configuration = builder.Configuration.GetConnectionString("Redis");
+});
+//
+// CORS (for Angular frontend)
 //
 builder.Services.AddCors(options =>
 {
@@ -26,10 +47,9 @@ var app = builder.Build();
 
 //
 // ==========================
-// MIDDLEWARE PIPELINE
+// MIDDLEWARE
 // ==========================
 
-// Swagger UI
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -38,64 +58,8 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-// Enable CORS BEFORE endpoints
 app.UseCors("AllowAll");
 
-//
-// ==========================
-// IN-MEMORY DATA STORE
-// ==========================
+app.MapControllers();
 
-var products = new List<object>
-{
-    new { Id = 1, Name = "Laptop", Price = 900 },
-    new { Id = 2, Name = "Phone", Price = 500 },
-    new { Id = 3, Name = "Headphones", Price = 150 },
-    new { Id = 4, Name = "Keyboard", Price = 80 }
-};
-
-var orders = new List<object>();
-
-//
-// ==========================
-// APIs
-// ==========================
-
-// GET ALL PRODUCTS
-app.MapGet("/api/products", () =>
-{
-    return Results.Ok(products);
-});
-
-// GET PRODUCT BY ID
-app.MapGet("/api/products/{id}", (int id) =>
-{
-    var product = products.FirstOrDefault(p =>
-        (int)p.GetType().GetProperty("Id")!.GetValue(p)! == id);
-
-    return product is not null
-        ? Results.Ok(product)
-        : Results.NotFound();
-});
-
-// CREATE ORDER (BUY BUTTON)
-app.MapPost("/api/orders", (object product) =>
-{
-    var order = new
-    {
-        OrderId = Guid.NewGuid(),
-        Product = product,
-        Status = "Created",
-        CreatedAt = DateTime.UtcNow
-    };
-
-    orders.Add(order);
-
-    return Results.Ok(new
-    {
-        message = "Order placed successfully",
-        order
-    });
-});
-
-app.Run("http://0.0.0.0:5000");
+app.Run();
